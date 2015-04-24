@@ -66,7 +66,7 @@ namespace blanker
                 {
                     failed++;
                     _log.ErrorFormat("Failed attempt #{0}...", failed);
-                    continue;
+                    //continue;
                 }
                 while (proc.IsRunning)
                 {
@@ -77,7 +77,7 @@ namespace blanker
             //if (failed > MAXFAIL)
             //    _log.Error("Failed to start.  quitting.");
             //else
-                _log.InfoFormat("Exiting at {0}.  Ran for {1}", DateTime.Now, DateTime.Now - _runningSince);
+            _log.InfoFormat("Exiting at {0}.  Ran for {1}", DateTime.Now, DateTime.Now - _runningSince);
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

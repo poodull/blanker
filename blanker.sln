@@ -5,6 +5,20 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blanker", "blanker\blanker.csproj", "{6CE5E3BD-49BA-4567-A8AD-D1B834B5E61B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{04957F5A-A2ED-49BE-A158-C230971711A0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "log4net", "log4net", "{82A36D57-E6D2-4E71-A394-C708019FF10D}"
+	ProjectSection(SolutionItems) = preProject
+		DLLs\log4net\log4net.dll = DLLs\log4net\log4net.dll
+		DLLs\log4net\log4net.xml = DLLs\log4net\log4net.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "mono", "mono", "{1B8315D6-1460-4B7F-844B-F5099CE3B8BC}"
+	ProjectSection(SolutionItems) = preProject
+		DLLs\log4net\mono\log4net.dll = DLLs\log4net\mono\log4net.dll
+		DLLs\log4net\mono\log4net.xml = DLLs\log4net\mono\log4net.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +32,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{82A36D57-E6D2-4E71-A394-C708019FF10D} = {04957F5A-A2ED-49BE-A158-C230971711A0}
+		{1B8315D6-1460-4B7F-844B-F5099CE3B8BC} = {82A36D57-E6D2-4E71-A394-C708019FF10D}
 	EndGlobalSection
 EndGlobal

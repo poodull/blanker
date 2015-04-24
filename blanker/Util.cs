@@ -47,7 +47,7 @@ namespace blanker
                         mac.Append(":");
                     }
                 }
-                if (!string.IsNullOrWhiteSpace(mac))
+                if (!string.IsNullOrWhiteSpace(mac.ToString()))
                 {
                     ret.Add(mac.ToString().ToLower().Trim());
                 }

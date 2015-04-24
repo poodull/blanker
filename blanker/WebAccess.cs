@@ -31,7 +31,7 @@ namespace blanker
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                 __sw.Restart();
-                using (HttpResponseMessage postResult = await client.PostAsync("api/BeaconApi",
+                using (HttpResponseMessage postResult = await client.PostAsync("api/BeaconApi?date=" + DateTime.Now.ToString("MM-dd-yyyy"),
                     packets, new JsonMediaTypeFormatter()))
                 {
                     if (postResult.IsSuccessStatusCode)
@@ -47,6 +47,22 @@ namespace blanker
             }
             __sw.Stop();
             return true;
+        }
+
+        internal static async Task<bool> ProcessImprintsAsync(int minuteIndex, List<string> macs)
+        {
+            try
+            {
+                _log.DebugFormat("############## Processing {0} imprints for minute {1}...", macs.Count, minuteIndex);
+                bool result = await postBeaconPackets(createPackets(minuteIndex, macs));
+                _log.DebugFormat("############## done processing.  Result = {0}...", result ? "ok" : "fail");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _log.Error("Error Posting.", ex);
+                return false;
+            }
         }
 
         internal static async Task TestPost()
@@ -81,23 +97,6 @@ namespace blanker
                 }
             }
 
-        }
-
-        internal static async Task<bool> ProcessImprintsAsync(int minuteIndex, List<string> macs)
-        {
-            try
-            {
-                _log.DebugFormat("############## Processing {0} imprints for minute {1}...", macs.Count, minuteIndex);
-                //return await Task.Run(() => ProcessImprints(minuteIndex, macs));
-                bool result = await postBeaconPackets(createPackets(minuteIndex, macs));
-                _log.DebugFormat("############## done processing.  Result = {0}...", result ? "ok" : "fail");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _log.Error("Error Posting.", ex);
-                return false;
-            }
         }
 
         private static List<BeaconPacket> createPackets(int mIndex, List<string> macs)
